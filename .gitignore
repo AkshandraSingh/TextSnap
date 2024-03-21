@@ -1,0 +1,4 @@
+\node_modules
+\textenv
+\.env
+\package-lock.json
