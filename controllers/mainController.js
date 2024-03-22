@@ -9,11 +9,10 @@ module.exports = {
                     message: 'Missing image in request'
                 });
             }
-            const imageData = req.file.path; // Adjust according to middleware
+            const imageData = req.file.path;
             const worker = await createWorker("eng");
             const output = await worker.recognize(imageData);
             await worker.terminate();
-            console.log(output)
             res.status(200).send({
                 success: true,
                 message: "Text extracted successfully ✅",

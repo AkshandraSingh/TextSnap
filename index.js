@@ -1,6 +1,7 @@
 require("dotenv").config()
 const express = require("express")
 
+require("./config/modelConfig")
 const urls = require("./urls")
 
 const app = express()
