@@ -5,7 +5,7 @@ const extractTextSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    fileName: {
+    filePath: {
         type: String,
         required: true
     },
