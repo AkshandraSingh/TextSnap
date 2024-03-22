@@ -1,0 +1,29 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+#mainHeading {
+  font-family: "Chewy", system-ui;
+  font-weight: 400;
+  text-align: center;
+  font-size: 42px;
+  margin: 22px;
+}
+
+#projectLogo {
+  width: 247px;
+  height: 148px;
+  margin: 0 auto;
+  display: block;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#fileImage {
+  margin-top: 150px;
+}
