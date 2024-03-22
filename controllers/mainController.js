@@ -2,6 +2,11 @@ const { createWorker } = require('tesseract.js');
 
 const extractTextSchema = require("../models/extractTextModel")
 
+const replaceNewLineWithSpace = (text) => {
+    const result = text.replace(/\n/g, ' ');
+    return result;
+}
+
 module.exports = {
     extractText: async (req, res) => {
         try {
@@ -14,11 +19,12 @@ module.exports = {
             const imageData = req.file.path;
             const worker = await createWorker("eng");
             const output = await worker.recognize(imageData);
+            const extractedText = replaceNewLineWithSpace(output.data.text)
             await worker.terminate();
             res.status(200).send({
                 success: true,
                 message: "Text extracted successfully ✅",
-                extractText: output.data.text,
+                extractText: extractedText,
             });
         } catch (error) {
             console.error(error);
@@ -40,8 +46,9 @@ module.exports = {
             const imageData = req.file.path;
             const worker = await createWorker("eng");
             const output = await worker.recognize(imageData);
+            const extractedText = replaceNewLineWithSpace(output.data.text)
             const extractTextData = new extractTextSchema({
-                extractText: output.data.text,
+                extractText: extractedText,
                 filePath: imageData,
             })
             await extractTextData.save();
@@ -49,7 +56,7 @@ module.exports = {
             res.status(200).send({
                 success: true,
                 message: "Text extracted and saved successfully ✅",
-                extractTextData: extractTextData
+                extractTextData: extractedText
             });
         } catch (error) {
             console.error(error);
